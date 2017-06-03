@@ -1,19 +1,21 @@
+<center>
 <p id="notice"><%= notice %></p>
 
-<div>
-<p>
-  <strong>Your original URL:</strong>
-  <%= @url.long_url %>
-</p>
+	<p>
+	  <strong>Your original URL:</strong>
+	  <%= @url.long_url %>
+	</p>
 
-<p>
-  <strong>Your Short URL:</strong>
-  <%= @url.short_url %>
-</p>
+	<p>
+	  <strong>Your Short URL:</strong>
+	  Myapp.heroku/<%= @url.short_url %>
+	</p>
+	<br>
 
-<%= link_to 'Visit your page!', @url.short_url, :class => "btn btn-primary btn-sm" %>
-<br>
-<%= link_to 'Submit another one!', new_url_path, :class => "btn btn-primary btn-sm" %>
-</div>
+	<%= link_to 'Visit your page!', short_url_path(@url.short_url), :class => "btn btn-primary btn-sm", target: "_blank" %>
+	<br>
+	<br>
+	<%= link_to 'Submit another one!', '/urls/new', :class => "btn btn-primary btn-sm" %>
+</center>
 
 

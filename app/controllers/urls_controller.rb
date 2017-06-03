@@ -7,9 +7,15 @@ class UrlsController < ApplicationController
     @urls = Url.all
   end
 
+  def redirect
+    @url = Url.find_by(short_url: params[:short_url])
+    redirect_to @url.long_url
+  end
+
   # GET /urls/1
   # GET /urls/1.json
   def show
+    @url = Url.find(params[:id])
   end
 
   # GET /urls/new
@@ -19,7 +25,7 @@ class UrlsController < ApplicationController
 
   # GET /urls/1/edit
   def edit
-    redirect_to new_url
+    redirect_to '/urls/new'
   end
 
   # POST /urls
@@ -35,7 +41,6 @@ class UrlsController < ApplicationController
         format.html { render :new }
         format.json { render json: @url.errors, status: :unprocessable_entity }
       end
-    redirect_to url
     end
   end
 
@@ -61,17 +66,34 @@ class UrlsController < ApplicationController
     #   format.html { redirect_to urls_url, notice: 'Url was successfully destroyed.' }
     #   format.json { head :no_content }
     # end
-    redirect_to new_url
+    redirect_to '/urls/new'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_url
-      @url = Url.find(params[:id])
-    end
+    # def set_url
+    #   @url = Url.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
       params.require(:url).permit(:long_url)
     end
+
+  require 'securerandom'
+
+  def set_short_url
+    if @url.long_url.include? "https://"
+      @url.short_url = SecureRandom.urlsafe_base64(3)
+      @url.save
+     elsif @url.long_url.include? "http://" 
+      @url.short_url = SecureRandom.urlsafe_base64(3)
+      @url.save
+    else 
+      @url.long_url.insert(0, "http://")
+      @url.short_url = SecureRandom.urlsafe_base64(3)
+      @url.save
+    end
+  end
+
 end
