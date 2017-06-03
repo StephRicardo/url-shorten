@@ -1,21 +1,25 @@
 <center>
-<p id="notice"><%= notice %></p>
+<p class="alert alert-dismissible alert-success"><%= notice %></p>
+</center>
 
-	<p>
-	  <strong>Your original URL:</strong>
-	  <%= @url.long_url %>
-	</p>
+<center>
+	<div class="well bs-component">
+		<p>
+		  <strong>Your original URL:</strong>
+		  <%= @url.long_url %>
+		</p>
 
-	<p>
-	  <strong>Your Short URL:</strong>
-	  https://quiet-dawn-35815.herokuapp.com/<%= @url.short_url %>
-	</p>
-	<br>
+		<p>
+		  <strong>Your Short URL:</strong>
+		  https://quiet-dawn-35815.herokuapp.com/<%= @url.short_url %>
+		</p>
+		<br>
 
-	<%= link_to 'Visit your page!', short_url_path(@url.short_url), :class => "btn btn-primary btn-sm", target: "_blank" %>
-	<br>
-	<br>
-	<%= link_to 'Submit another one!', '/urls/new', :class => "btn btn-primary btn-sm" %>
+		<%= link_to 'Visit your page!', short_url_path(@url.short_url), :class => "btn btn-primary btn-sm", target: "_blank" %>
+		<br>
+		<br>
+		<%= link_to 'Submit another one!', '/urls/new', :class => "btn btn-primary btn-sm" %>
+	</div>
 </center>
 
 
