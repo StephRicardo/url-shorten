@@ -1,24 +1,46 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## UrlShorten - Rails App
 
-Things you may want to cover:
+### Description
 
-* Ruby version
+During the second half of Wyncode, I created a URL shortener with Rails. Enter in a long URL and receive a new shorter version! You can view the site [here](https://quiet-dawn-35815.herokuapp.com/).
 
-* System dependencies
+### Installation
 
-* Configuration
+Enter the following commands into your terminal to clone and set-up the project.
 
-* Database creation
 
-* Database initialization
+To clone the project into your computer (with HTTPS):
+ ```bash
 
-* How to run the test suite
+git clone git@github.com:StephRicardo/url-shorten.git
 
-* Services (job queues, cache servers, search engines, etc.)
+ ```
 
-* Deployment instructions
+ Enter the newly created project with `cd url-shorten` and install gems with:
+ ```bash
 
-* ...
+bundle install
+
+```
+
+Create the database and run the migrations needed with the following:
+```bash
+
+rails db:create
+rails db:migrate
+
+```
+
+Run the server for the site with:
+
+```bash
+
+rails s
+
+```
+
+### Usage
+After typing `rails s` into your terminal, you can visit **localhost:3000** in your browser to view the site and use it!
+
